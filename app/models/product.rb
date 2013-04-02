@@ -13,15 +13,15 @@ class Product < ActiveRecord::Base
 	def validate_title
 	
 	  return unless self.no_tests_allowed
-	  errors.add(:fields, "title mustn't be test")
+	  errors.add(:fields, "title mustn't be test or title")
 	end
 	
 	protected
 	def no_tests_allowed
-		if !self.title.match(/.*test.*/i) && self.title.match(/.*title.*/i)
-			return false
-		else
+		if self.title.match(/.*test.*/i) || self.title.match(/.*title.*/i)
 			return true
+		else
+			return false
 		end
 	end
 
