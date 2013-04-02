@@ -6,9 +6,20 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
-<%= yield %>
+<body class="<%= controller.controller_name %>">
+	<div id="banner">
+			<%= @page_title || "Books-App" %>
+	</div>
+	<div id="columns">
+		<div id="side"> 
+			<ul>
+				<li><%= link_to 'Books-App', 'store' %></li>
+				<li><%= link_to 'Products', 'products' %></li>
+			</ul>
+		</div>
+		<div id="main"> <%= yield %>
+    </div>
+  </div>
 
 </body>
 </html>

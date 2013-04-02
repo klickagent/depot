@@ -1,7 +1,47 @@
+
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+
+<h1>Catalogue</h1>
+
+<% @products.each do |product| %>
+  <div class="entry">
+    <% if product.image_url? %>
+   	 	<%= image_tag(product.image_url) %>
+   	 <% else %>
+   	 	<span class="inline">no image</span>
+   	 <% end %>
+   	 
+    <h3><%= link_to product.title , product %></h3>
+    <p><%= sanitize(product.description) %></p>
+    <div class="price_line">
+      <span class="price"><%= product.price %></span>
+    </div>
+  </div>
+<% end %>
+
+
+
+
+
+<!--
+
 <h1>Store#index</h1>
 <% @products.each do |product| %>
   <div class="entry">
-    <%= image_tag(product.image_url) %>
     <h3><%= product.title %></h3>
+    <p>
+   	 <% if product.image_url? %>
+   	 		<%= image_tag(product.image_url) %>
+   	 <% else %>
+   	 	no image
+   	 <% end %>
+    </p>
+    Preis <%= product.price %>
   </div>
+  <hr>
 <% end %>
+
+
+-->
