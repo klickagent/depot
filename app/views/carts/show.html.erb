@@ -1,0 +1,26 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+
+<h2>Your Cart</h2> <ul>
+<% @cart.line_items.each do |item| %> 
+	<li><%= link_to raw("#{ item.quantity } &times; #{ item.product.title } <span class=\"line_total\">#{ number_to_currency(item.total_price) }</span></li>") , item.product %>
+<% end %> </ul>
+
+
+<br/>
+<hr>
+
+<!-- START_HIGHLIGHT -->
+<%= button_to "Checkout", new_order_path, :method => :get %>
+<!-- END_HIGHLIGHT -->
+<br/>
+<%= button_to 'Empty cart', @cart, :method => :delete,
+#<!-- END_HIGHLIGHT -->
+    :confirm => 'Are you sure?' %>
+
+
+<!--
+<%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %>
+-->

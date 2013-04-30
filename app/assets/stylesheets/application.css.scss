@@ -23,18 +23,25 @@ span.inline{
   padding: 10px;
   font: small-caps 40px/40px "Lobster", serif;
   text-align: left;
+  a{
+	  text-decoration: none;
+	  color: black;
+  }
   img {
     float: left;
   }
+  
 }
 
 #notice {
   color: #000 !important;
-  border: 2px solid red;
-  padding: 1em;
-  margin-bottom: 2em;
-  background-color: #f0f0f0;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 10px;
   font: bold smaller sans-serif;
+  position: absolute;
+  text-align: center;
+  background: rgba(255,242,0,0.3);
+  margin-top: -20px;
 }
 
 #columns {
