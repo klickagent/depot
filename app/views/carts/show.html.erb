@@ -7,6 +7,8 @@
 	<li><%= link_to raw("#{ item.quantity } &times; #{ item.product.title } <span class=\"line_total\">#{ number_to_currency(item.total_price) }</span></li>") , item.product %>
 <% end %> </ul>
 
+cart total <%= number_to_currency(@cart.total_price) %>
+
 
 <br/>
 <hr>
