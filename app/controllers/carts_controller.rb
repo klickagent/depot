@@ -85,13 +85,13 @@ class CartsController < ApplicationController
 	    redirect_to(:action => store_url, :notice => text )
 	    return
 	end
-    
     @cart.destroy
     
     
 
     respond_to do |format|
       format.html { redirect_to store_url, :notice => 'Cart successfully deleted' }
+      format.js
       format.json { head :no_content }
     end
   end

@@ -16,6 +16,16 @@
 				<li><%= link_to 'Books-App', store_url %></li>
 				<li><%= link_to 'Products', products_url %></li>
 			</ul>
+			
+			<div id="cart">
+					
+			        <%= 
+			        	#da in backend nicht verfügbar: if @cart!
+			        	render @cart if @cart
+			        %>
+			</div>
+			
+			
 		</div>
 		<div id="main"> <%= yield %>
     </div>
