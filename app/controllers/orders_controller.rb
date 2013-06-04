@@ -1,3 +1,11 @@
+#---
+# Excerpted from "Agile Web Development with Rails",
+# published by The Pragmatic Bookshelf.
+# Copyrights apply to this code. It may not be used to create training material, 
+# courses, books, articles, and the like. Contact us if you are in doubt.
+# We make no guarantees that this code is fit for any purpose. 
+# Visit http://www.pragmaticprogrammer.com/titles/rails4 for more book information.
+#---
 class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
@@ -24,6 +32,12 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.json
   def new
+    @cart = current_cart
+    if @cart.line_items.empty?
+      redirect_to store_url, notice: "Your cart is empty"
+      return
+    end
+
     @order = Order.new
 
     respond_to do |format|
@@ -41,14 +55,21 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(params[:order])
+    @order.add_line_items_from_cart(current_cart)
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render json: @order, status: :created, location: @order }
+        Cart.destroy(session[:cart_id])
+        session[:cart_id] = nil
+        format.html { redirect_to store_url, notice: 
+          'Thank you for your order.' }
+        format.json { render json: @order, status: :created,
+          location: @order }
       else
+        @cart = current_cart
         format.html { render action: "new" }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        format.json { render json: @order.errors,
+          status: :unprocessable_entity }
       end
     end
   end

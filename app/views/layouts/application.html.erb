@@ -19,10 +19,14 @@
 			
 			<div id="cart">
 					
-			        <%= 
-			        	#da in backend nicht verfügbar: if @cart!
-			        	render @cart if @cart
-			        %>
+					<% if(@cart) %>
+					<%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+						<%= 
+							render @cart if @cart
+							#da in backend nicht verfügbar: if @cart!
+						%>
+					<% end %>
+			      <% end %>
 			</div>
 			
 			
